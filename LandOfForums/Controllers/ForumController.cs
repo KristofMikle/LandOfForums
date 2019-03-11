@@ -20,6 +20,7 @@ namespace LandOfForums.Controllers
 
         public IActionResult Index()
         {
+
             IEnumerable<ForumListingModel> forums = _forumService.GetAll()
                 .Select(forum => new ForumListingModel {
                     Id = forum.Id,
@@ -32,6 +33,13 @@ namespace LandOfForums.Controllers
             };
 
             return View(model);
+        }
+        public IActionResult Topic(int id)
+        {
+            var forum = _forumService.GetById(id);
+            var posts = _postService.GetFilteredPost(id);
+
+            var postList = 0;
         }
     }
 }
