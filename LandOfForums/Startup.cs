@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using LandOfForums.Data;
 using LandOfForums.Services;
 using LandOfForums.Data.Models;
+using LandOfForums.Service;
 
 namespace LandOfForums
 {
@@ -31,6 +32,7 @@ namespace LandOfForums
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IForum, ForumService>();
 
             services.AddMvc();
         }

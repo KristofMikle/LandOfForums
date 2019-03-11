@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LandOfForums.Data\LandOfForums.Data.csproj" />
+    <ProjectReference Include="..\LandOfForums.Service\LandOfForums.Service.csproj" />
   </ItemGroup>
 
 </Project>
