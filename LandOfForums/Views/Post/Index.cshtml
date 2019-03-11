@@ -1,0 +1,32 @@
+﻿@model LandOfForums.Models.Post.PostIndexModel
+
+<h1>@Model.Title</h1>
+
+<div>
+    author: @Model.AuthorName
+    created: @Model.Created
+</div>
+<div>
+    @Model.Content
+</div>
+
+
+@if (Model.Replies.Any())
+{
+    @foreach (var reply in Model.Replies)
+    {
+        <div>
+            author: @reply.AuthorName
+            created: @reply.Created
+        </div>
+        <div>
+            @reply.Content
+        </div>
+    }
+}
+else
+{
+    <h3>There are no Replies yet.</h3>
+}
+
+
