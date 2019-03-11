@@ -1,0 +1,37 @@
+﻿@model LandOfForums.Models.Forum.ForumTopicModel
+
+<h1>@Model.Forum.Name</h1>
+
+@if (Model.Posts.Any())
+{
+    <table class="table table-bordered table-hover" id="forumIndexTable">
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+            <tr>
+                <td>
+                    <a asp-controller="Post" asp-action="Index" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+
+                </td>
+                <td>
+                    @post.AuthorName
+                </td>
+                <td>
+                    @post.DatePosted
+                </td>
+                <td>
+                    @post.ReplyCount
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>There are no posts yet.</h3>
+}
+
+

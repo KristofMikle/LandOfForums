@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using LandOfForums.Data;
+using LandOfForums.Data.Models;
+
+namespace LandOfForums.Service
+{
+    public class PostService : IPost
+    {
+        private readonly ApplicationDbContext _context;
+        public PostService(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public Task Add(Post post)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddRepy(PostReply reply)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task EditPost(int id, string newContent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Post GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetFilteredPosts(string searchQuerry)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetPostsByForum(int id)
+        {
+            return _context.Forums
+                .Where(forum => forum.Id == id)
+                .First()
+                .Posts;
+        }
+
+        public Task Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

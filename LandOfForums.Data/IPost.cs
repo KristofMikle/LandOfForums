@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace LandOfForums.Service
 {
-    interface IPost
+    public interface IPost
     {
         Post GetById(int id);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(string searchQuerry);
+        IEnumerable<Post> GetPostsByForum(int id);
 
         Task Add(Post post);
         Task Remove(int id);
         Task EditPost(int id, string newContent);
         Task AddRepy(PostReply reply);
+        
     }
 }
