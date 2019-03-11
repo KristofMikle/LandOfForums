@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandOfForums", "LandOfForum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandOfForums.Data", "LandOfForums.Data\LandOfForums.Data.csproj", "{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandOfForums.Service", "LandOfForums.Service\LandOfForums.Service.csproj", "{812C2251-86CD-42C2-9006-4B427BF5C393}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{812C2251-86CD-42C2-9006-4B427BF5C393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{812C2251-86CD-42C2-9006-4B427BF5C393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{812C2251-86CD-42C2-9006-4B427BF5C393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{812C2251-86CD-42C2-9006-4B427BF5C393}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
