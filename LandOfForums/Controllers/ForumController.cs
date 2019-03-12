@@ -45,6 +45,7 @@ namespace LandOfForums.Controllers
             var postList = posts.Select(post => new PostListingModel
             {
                 Id = post.Id,
+                AuthorName = post.User.UserName,
                 AuthorId = post.User.Id,
                 AuthorRating = post.User.Rating,
                 Title = post.Title,
