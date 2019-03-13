@@ -23,4 +23,8 @@
     <ProjectReference Include="..\LandOfForums.Service\LandOfForums.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Forum\" />
+  </ItemGroup>
+
 </Project>
