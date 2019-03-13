@@ -11,7 +11,7 @@ namespace LandOfForums.Service
     {
         Post GetById(int id);
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetFilteredPosts(string searchQuerry);
+        IEnumerable<Post> GetFilteredPosts(int id, string searchQuerry);
         IEnumerable<Post> GetPostsByForum(int id);
 
         Task Add(Post post);

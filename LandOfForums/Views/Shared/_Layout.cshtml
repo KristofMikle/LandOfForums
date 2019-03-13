@@ -60,11 +60,12 @@
                 }
                 else
                 {
-                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right"></form>
+                    <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li>Hi, @UserManager.GetUserName(User)</li>
-                        <li><a asp-controller="Account" asp-action="Logout"> Sign Out </a> </li>
+                        <li><button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button></li>
                     </ul>
+                    </form>
                 }
             </div>
         </div>

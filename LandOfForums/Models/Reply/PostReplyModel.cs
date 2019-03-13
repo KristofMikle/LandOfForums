@@ -14,6 +14,7 @@ namespace LandOfForums.Models.Reply
         public int AuthorRating { get; set; }
         public DateTime Created { get; set; }
         public string Content { get; set; }
+        public bool IsAuthorAdmin { get; set; }
 
         public int PostId { get; set; }
     }

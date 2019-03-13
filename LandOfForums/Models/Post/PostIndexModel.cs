@@ -17,6 +17,10 @@ namespace LandOfForums.Models.Post
         public DateTime Created { get; set; }
         public string Content { get; set; }
 
+        public int ForumID { get; set; }
+        public string ForumName { get; set; }
+        public bool IsAuthorAdmin { get; set; }
+
         public IEnumerable<PostReplyModel> Replies { get; set; }
     }
 }

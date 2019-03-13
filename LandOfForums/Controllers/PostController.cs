@@ -41,9 +41,17 @@ namespace LandOfForums.Controllers
                 AuthorRating = post.User.Rating,
                 Created = post.Created,
                 Content = post.Content,
-                Replies = replies
+                Replies = replies,
+                ForumID = post.Forum.Id,
+                ForumName = post.Forum.Title,
+                IsAuthorAdmin= IsAuthorAdmin(post.User)
             };
             return View(model);
+        }
+
+        private bool IsAuthorAdmin(ApplicationUser user)
+        {
+            return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
         public IActionResult Create(int id) // id is forum Id
@@ -96,7 +104,8 @@ namespace LandOfForums.Controllers
                 AuthorRating = reply.User.Rating,
                 Content = reply.Content,
                 Created = reply.Created,
-                PostId = reply.Id
+                PostId = reply.Id,
+                IsAuthorAdmin = IsAuthorAdmin(reply.User)
             });
         }
     }

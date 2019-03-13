@@ -52,9 +52,11 @@ namespace LandOfForums.Service
                 .First();
         }
 
-        public IEnumerable<Post> GetFilteredPosts(string searchQuerry)
+        public IEnumerable<Post> GetFilteredPosts(int id, string searchQuerry)
         {
-            throw new NotImplementedException();
+            var forum = _context.Forums.Find(id);
+            return String.IsNullOrEmpty(searchQuerry) ? forum.Posts : forum.Posts
+                .Where(post => post.Title.Contains(searchQuerry) || post.Content.Contains(searchQuerry));
         }
 
         public IEnumerable<Post> GetLatestsPosts(int v)
