@@ -52,11 +52,16 @@ namespace LandOfForums.Service
                 .First();
         }
 
-        public IEnumerable<Post> GetFilteredPosts(int id, string searchQuerry)
+        public IEnumerable<Post> GetFilteredPosts(int id, string searchQuery)
         {
             var forum = _context.Forums.Find(id);
-            return String.IsNullOrEmpty(searchQuerry) ? forum.Posts : forum.Posts
-                .Where(post => post.Title.Contains(searchQuerry) || post.Content.Contains(searchQuerry));
+            return String.IsNullOrEmpty(searchQuery) ? forum.Posts : forum.Posts
+                .Where(post => post.Title.Contains(searchQuery) || post.Content.Contains(searchQuery));
+        }
+
+        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        {
+            return GetAll().Where(post => post.Title.Contains(searchQuery) || post.Content.Contains(searchQuery));
         }
 
         public IEnumerable<Post> GetLatestsPosts(int v)

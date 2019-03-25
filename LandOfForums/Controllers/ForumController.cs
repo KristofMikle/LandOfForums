@@ -38,14 +38,15 @@ namespace LandOfForums.Controllers
 
             return View(model);
         }
-        public IActionResult Topic(int id, string searchQuerry)
+
+        public IActionResult Topic(int id, string searchquery)
         {
             var forum = _forumService.GetById(id);
 
             var posts = new List<Post>();
-            if (!String.IsNullOrEmpty(searchQuerry))
+            if (!String.IsNullOrEmpty(searchquery))
             {
-                posts = _postService.GetFilteredPosts(id, searchQuerry).ToList();
+                posts = _postService.GetFilteredPosts(id, searchquery).ToList();
             }
             else
             {
@@ -73,9 +74,9 @@ namespace LandOfForums.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(int id, string searchQuerry)
+        public IActionResult Search(int id, string searchquery)
         {
-            return RedirectToAction("Topic", new { id, searchQuerry });
+            return RedirectToAction("Topic", new { id, searchquery });
         }
 
         public static ForumListingModel BuildForumListing(Post post)
@@ -84,6 +85,7 @@ namespace LandOfForums.Controllers
 
             return BuildForumListing(forum);
         }
+
         private static ForumListingModel BuildForumListing(Forum forum)
         {
             return new ForumListingModel

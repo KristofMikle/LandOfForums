@@ -44,7 +44,7 @@ namespace LandOfForums.Controllers
             return new HomeIndexModel
             {
                 LatestPosts = posts,
-                SearchQuerry = ""
+                SearchQuery = ""
             };
         }
 

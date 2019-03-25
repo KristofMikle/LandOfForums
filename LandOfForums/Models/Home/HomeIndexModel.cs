@@ -8,7 +8,7 @@ namespace LandOfForums.Models.Home
 {
     public class HomeIndexModel
     {
-        public string SearchQuerry { get; set; }
+        public string SearchQuery { get; set; }
         public IEnumerable<PostListingModel> LatestPosts { get; set; }
     }
 }
