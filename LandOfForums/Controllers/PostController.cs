@@ -54,9 +54,9 @@ namespace LandOfForums.Controllers
             return _userManager.GetRolesAsync(user).Result.Contains("Admin");
         }
 
-        public IActionResult Create(int id) // id is forum Id
+        public IActionResult Create(int forumId) 
         {
-            var forum = _forumService.GetById(id);
+            var forum = _forumService.GetById(forumId);
 
             var model = new NewPostModel
             {

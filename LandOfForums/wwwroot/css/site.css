@@ -8,6 +8,10 @@
     background-position: center;
 }
 
+.searchBar{
+   color: black;
+}
+
 .navbar{
     box-shadow: 0 5px 4px -6px #000;
 }
