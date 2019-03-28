@@ -44,21 +44,22 @@ public IActionResult Index(int id)
             return View(model);
         }
 ```
-In the view:
+Using the @model I can acces the information I passed from the controller.
+In the Post/Index.cshtml:
 ```html
 @model LandOfForums.Models.Post.PostIndexModel
 ...
 <div class="row postHeader">
-        <div class="postHeading">
-            <span class="postIndexTitle">
-                @Model.Title
-            </span>
-            <span id="headingBtn">
-                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.ForumID" class="btn btn-back">
-                            Back to @Model.ForumName
-                    </a>
-            </span>
-        </div>
+    <div class="postHeading">
+        <span class="postIndexTitle">
+            @Model.Title
+        </span>
+        <span id="headingBtn">
+            <a asp-controller="Forum" asp-action="Topic" asp-route-id="@Model.ForumID" class="btn btn-back">
+                    Back to @Model.ForumName
+            </a>
+        </span>
     </div>
+</div>
 ...
 ```
