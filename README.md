@@ -5,7 +5,8 @@ A forum app built with ASP.NET Core 2.0. Uses ASP.NET Core Identity for user mem
 # Code
 
 First I get the needed data from the Database.
-In the Post service:
+
+In the Post Service:
 ```c#
 public Post GetById(int id)
         {
@@ -18,7 +19,8 @@ public Post GetById(int id)
         }
 ```
 Then I build a model that I can pass to the View, so I have access to all the information, that I need there.
-in the Post controlller:
+
+In the Post Controlller:
 ```c#
 public IActionResult Index(int id)
         {
@@ -45,6 +47,7 @@ public IActionResult Index(int id)
         }
 ```
 Using the @model I can acces the information I passed from the controller.
+
 In the Post/Index.cshtml:
 ```html
 @model LandOfForums.Models.Post.PostIndexModel
