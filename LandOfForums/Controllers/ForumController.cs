@@ -103,6 +103,12 @@ namespace LandOfForums.Controllers
             };
         }
 
+        public IActionResult Delete(int id)
+        {
+            _forumService.Delete(id);
+            return RedirectToAction("Index", "Forum");
+        }
+
         public IActionResult Create()
         {
             var model = new AddForumModel();

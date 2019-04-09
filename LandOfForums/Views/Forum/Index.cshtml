@@ -7,8 +7,7 @@
             <p>Welcome to the <strong>Land of Forums</strong>. Forums are broadly categorized into separate forums by programming language or area of interest.</p>
             @if (Context.User.Identity.IsAuthenticated)
             {
-                <p>Please read the Forum Guidelines before creating a <a asp-controller="Forum" asp-action="Create" class="btn btn-newPost">New Forum</a>.</p>
-                <span id="headingBtn"></span>
+                <span>Please read the Forum Guidelines before creating a <a asp-controller="Forum" asp-action="Create">New Forum</a>.</span>
             }
             else
             {
@@ -17,7 +16,7 @@
         </div>
     </div>
     <div class="row" id="forumIndexContent">
-        <table class="table table-hover" id="forumIndexTable">
+        <table class="table table-hover table-bordered" id="forumIndexTable">
             <tbody>
                 @foreach (var forum in Model.ForumList)
                 {
