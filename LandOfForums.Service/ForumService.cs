@@ -11,10 +11,45 @@ namespace LandOfForums.Service
     public class ForumService : IForum
     {
         private readonly ApplicationDbContext _context;
+        private readonly IPost _postService;
 
-        public ForumService(ApplicationDbContext context)
+        public bool HasRecentPost(int id)
+        {
+            const int hoursAgo = 12;
+            var window = DateTime.Now.AddHours(-hoursAgo);
+            return GetById(id).Posts.Any(post => post.Created >= window);
+        }
+
+        public ForumService(ApplicationDbContext context, IPost postService)
         {
             _context = context;
+            _postService = postService;
+        }
+
+        public Post GetLatestPost(int forumId)
+        {
+            var posts = GetById(forumId).Posts;
+
+            if (posts != null)
+            {
+                return GetById(forumId).Posts
+                    .OrderByDescending(post => post.Created)
+                    .FirstOrDefault();
+            }
+
+            return new Post();
+        }
+
+        public IEnumerable<ApplicationUser> GetActiveUsers(int forumId)
+        {
+            var posts = GetById(forumId).Posts;
+
+            if (posts == null || !posts.Any())
+            {
+                return new List<ApplicationUser>();
+            }
+
+            return _postService.GetAllUsers(posts);
         }
 
         public Task Create(Forum forum)
@@ -22,9 +57,11 @@ namespace LandOfForums.Service
             throw new NotImplementedException();
         }
 
-        public Task Delete(int forumId)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var forum = GetById(id);
+            _context.Remove(forum);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Forum> GetAll()
@@ -58,6 +95,12 @@ namespace LandOfForums.Service
         public Task UpdateForumTitle(int forumId, string newTitle)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task Add(Data.Models.Forum forum)
+        {
+            _context.Add(forum);
+            await _context.SaveChangesAsync();
         }
     }
 }

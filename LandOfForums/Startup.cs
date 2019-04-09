@@ -34,6 +34,8 @@ namespace LandOfForums
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IForum, ForumService>();
             services.AddScoped<IPost, PostService>();
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
+            services.AddSingleton<IUpload, UploadService>();
 
             services.AddMvc();
         }

@@ -17,6 +17,22 @@ namespace LandOfForums.Service
             _context = context;
         }
 
+        public IEnumerable<ApplicationUser> GetAllUsers(IEnumerable<Post> posts)
+        {
+            var users = new List<ApplicationUser>();
+
+            foreach (var post in posts)
+            {
+                users.Add(post.User);
+
+                if (!post.Replies.Any()) continue;
+
+                users.AddRange(post.Replies.Select(reply => reply.User));
+            }
+
+            return users.Distinct();
+        }
+
         public async Task Add(Post post)
         {
             _context.Add(post);

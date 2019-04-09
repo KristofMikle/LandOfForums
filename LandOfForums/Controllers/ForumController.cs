@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using LandOfForums.Data;
@@ -29,7 +30,12 @@ namespace LandOfForums.Controllers
                 .Select(forum => new ForumListingModel {
                     Id = forum.Id,
                     Name = forum.Title,
-                    Description = forum.Description
+                    Description = forum.Description,
+                    NumberOfPosts = forum.Posts?.Count() ?? 0,
+                    Latest = GetLatestPost(forum.Id) ?? new PostListingModel(),
+                    NumberOfUsers = _forumService.GetActiveUsers(forum.Id).Count(),
+                    ImageURL = forum.ImageURL,
+                    HasRecentPost = _forumService.HasRecentPost(forum.Id)
                 });
             var model = new ForumIndexModel
             {
@@ -95,6 +101,58 @@ namespace LandOfForums.Controllers
                 Description = forum.Description,
                 ImageURL = forum.ImageURL
             };
+        }
+
+        public IActionResult Create()
+        {
+            var model = new AddForumModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddForum(AddForumModel model)
+        {
+
+            var imageUri = "";
+
+            if (model.ImageUpload != null)
+            {
+                //var blockBlob = PostForumImage(model.ImageUpload);
+                //imageUri = blockBlob.Uri.AbsoluteUri;
+                imageUri = "/images/users/default.png";
+            }
+            else
+            {
+                imageUri = "/images/users/default.png";
+            }
+
+            var forum = new Data.Models.Forum()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Created = DateTime.Now,
+                ImageURL = imageUri
+            };
+
+            await _forumService.Add(forum);
+            return RedirectToAction("Index", "Forum");
+        }
+
+        public PostListingModel GetLatestPost(int forumId)
+        {
+            var post = _forumService.GetLatestPost(forumId);
+
+            if (post != null)
+            {
+                return new PostListingModel
+                {
+                    AuthorName = post.User != null ? post.User.UserName : "",
+                    DatePosted = post.Created.ToString(CultureInfo.InvariantCulture),
+                    Title = post.Title ?? ""
+                };
+            }
+
+            return new PostListingModel();
         }
     }
 }
