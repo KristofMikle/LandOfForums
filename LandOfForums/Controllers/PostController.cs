@@ -37,12 +37,12 @@ namespace LandOfForums.Controllers
                 Title = post.Title,
                 AuthorId = post.User.Id,
                 AuthorName = post.User.UserName,
-                AuthorImageURL = post.User.ProfileImageUrl,
+                AuthorImageUrl = post.User.ProfileImageUrl,
                 AuthorRating = post.User.Rating,
                 Created = post.Created,
                 Content = post.Content,
                 Replies = replies,
-                ForumID = post.Forum.Id,
+                ForumId = post.Forum.Id,
                 ForumName = post.Forum.Title,
                 IsAuthorAdmin= IsAuthorAdmin(post.User)
             };
@@ -61,7 +61,7 @@ namespace LandOfForums.Controllers
             var model = new NewPostModel
             {
                 ForumName = forum.Title,
-                ForumImageURL = forum.ImageURL,
+                ForumImageUrl = forum.ImageUrl,
                 ForumId = forum.Id,
                 AuthorName = User.Identity.Name
             };
@@ -100,9 +100,9 @@ namespace LandOfForums.Controllers
                 Id = reply.Id,
                 AuthorName = reply.User.UserName,
                 AuthorId = reply.User.Id,
-                AuthorImageURL = reply.User.ProfileImageUrl,
+                AuthorImageUrl = reply.User.ProfileImageUrl,
                 AuthorRating = reply.User.Rating,
-                Content = reply.Content,
+                ReplyContent = reply.Content,
                 Created = reply.Created,
                 PostId = reply.Id,
                 IsAuthorAdmin = IsAuthorAdmin(reply.User)

@@ -12,6 +12,6 @@ namespace LandOfForums.Models.Post
         public int ForumId { get; set; }
         public string ForumName { get; set; }
         public string AuthorName { get; set; }
-        public string ForumImageURL { get; set; }
+        public string ForumImageUrl { get; set; }
     }
 }

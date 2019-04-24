@@ -39,9 +39,10 @@ namespace LandOfForums.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task AddRepy(PostReply reply)
+        public async Task AddReply(PostReply reply)
         {
-            throw new NotImplementedException();
+            _context.PostReplies.Add(reply);
+            await _context.SaveChangesAsync();
         }
 
         public Task EditPost(int id, string newContent)

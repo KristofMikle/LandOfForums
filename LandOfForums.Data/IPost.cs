@@ -18,7 +18,7 @@ namespace LandOfForums.Service
         Task Add(Post post);
         Task Remove(int id);
         Task EditPost(int id, string newContent);
-        Task AddRepy(PostReply reply);
+        Task AddReply(PostReply reply);
         IEnumerable<Post> GetLatestsPosts(int v);
         IEnumerable<ApplicationUser> GetAllUsers(IEnumerable<Post> posts);
     }

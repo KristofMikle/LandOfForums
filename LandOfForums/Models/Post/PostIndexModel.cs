@@ -12,12 +12,12 @@ namespace LandOfForums.Models.Post
         public string Title { get; set; }
         public string AuthorId { get; set; }
         public string AuthorName { get; set; }
-        public string AuthorImageURL { get; set; }
+        public string AuthorImageUrl { get; set; }
         public int AuthorRating { get; set; }
         public DateTime Created { get; set; }
         public string Content { get; set; }
 
-        public int ForumID { get; set; }
+        public int ForumId { get; set; }
         public string ForumName { get; set; }
         public bool IsAuthorAdmin { get; set; }
 

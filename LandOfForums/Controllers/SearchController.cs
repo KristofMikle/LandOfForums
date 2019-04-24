@@ -56,7 +56,7 @@ namespace LandOfForums.Controllers
             return new ForumListingModel
             {
                 Id = forum.Id,
-                ImageURL = forum.ImageURL,
+                ImageUrl = forum.ImageUrl,
                 Name = forum.Title,
                 Description = forum.Description
             };

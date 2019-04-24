@@ -34,7 +34,7 @@ namespace LandOfForums.Controllers
                     NumberOfPosts = forum.Posts?.Count() ?? 0,
                     Latest = GetLatestPost(forum.Id) ?? new PostListingModel(),
                     NumberOfUsers = _forumService.GetActiveUsers(forum.Id).Count(),
-                    ImageURL = forum.ImageURL,
+                    ImageUrl = forum.ImageUrl,
                     HasRecentPost = _forumService.HasRecentPost(forum.Id)
                 });
             var model = new ForumIndexModel
@@ -99,7 +99,7 @@ namespace LandOfForums.Controllers
                 Id = forum.Id,
                 Name = forum.Title,
                 Description = forum.Description,
-                ImageURL = forum.ImageURL
+                ImageUrl = forum.ImageUrl
             };
         }
 
@@ -137,7 +137,7 @@ namespace LandOfForums.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Created = DateTime.Now,
-                ImageURL = imageUri
+                ImageUrl = imageUri
             };
 
             await _forumService.Add(forum);
