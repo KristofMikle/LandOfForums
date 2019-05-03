@@ -1,13 +1,29 @@
 ﻿@model LandOfForums.Models.Reply.PostReplyModel
 
-<div class="container body-content">
-    <div class="row sectionHeader">
-        <div class="sectionHeading">
-            @Model.PostTitle
+    <div class="row postHeader">
+        <div class="postHeading">
+            <span class="postIndexTitle">
+                @Model.PostTitle
+            </span>
             <span id="headingBtn"><a asp-controller="Post" asp-action="Index" asp-route-id="@Model.PostId" class="btn btn-back">Back to Post</a></span>
         </div>
-        <div class="sectionDescription">
-            @Model.PostContent
+    </div>
+    <div class="row" id="postIndexContent">
+        <div class="col-md-3 postAuthorContainer">
+            <div class="postAuthorImage" style="background-image: url(@Model.AuthorImageUrl); background-size: 100%;"></div>
+            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                <strong>@Model.AuthorName</strong>
+            </a> (<span class="postAuthorRating">@Model.AuthorRating</span>) <br />
+            <span class="postDate">@Model.Created</span>
+            @if (@Model.IsAuthorAdmin)
+            {
+                <span class="isAdmin smaller">Admin</span>
+            }
+        </div>
+        <div class="col-md-9 postContentContainer">
+            <div class="postContent">
+                @Html.Raw(@Model.PostContent)
+            </div>
         </div>
     </div>
     <div class="row">
@@ -16,7 +32,7 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="ReplyContent">Reply Content</label>
-                    <textarea asp-for="ReplyContent" rows="20" class="form-control" placeholder="Write your reply here."></textarea>
+                    <textarea asp-for="ReplyContent" rows="3" class="form-control" placeholder="Write your reply here."></textarea>
                     <span asp-validation-for="ReplyContent" class="text-danger"></span>
                 </div>
                 <div class="authorBlock">

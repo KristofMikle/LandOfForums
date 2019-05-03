@@ -9,6 +9,12 @@ using LandOfForums.Models.Forum;
 using LandOfForums.Models.Post;
 using LandOfForums.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.IO;
 
 namespace LandOfForums.Controllers
 {
@@ -16,16 +22,19 @@ namespace LandOfForums.Controllers
     {
         private readonly IForum _forumService;
         private IPost _postService;
+        private readonly IUpload _uploadService;
+        private readonly IConfiguration _configuration;
 
-        public ForumController(IForum forumService, IPost postService)
+        public ForumController(IForum forumService, IPost postService, IConfiguration configuration, IUpload uploadService)
         {
             _forumService = forumService;
             _postService = postService;
+            _configuration = configuration;
+            _uploadService = uploadService;
         }
 
         public IActionResult Index()
         {
-
             IEnumerable<ForumListingModel> forums = _forumService.GetAll()
                 .Select(forum => new ForumListingModel {
                     Id = forum.Id,
@@ -118,21 +127,19 @@ namespace LandOfForums.Controllers
         [HttpPost]
         public async Task<IActionResult> AddForum(AddForumModel model)
         {
-
             var imageUri = "";
 
             if (model.ImageUpload != null)
             {
-                //var blockBlob = PostForumImage(model.ImageUpload);
-                //imageUri = blockBlob.Uri.AbsoluteUri;
-                imageUri = "/images/users/default.png";
+                var blockBlob = PostForumImage(model.ImageUpload);
+                imageUri = blockBlob.Result.Uri.AbsoluteUri;
             }
             else
             {
-                imageUri = "/images/users/default.png";
+                imageUri = "/images/forum/default.png";
             }
 
-            var forum = new Data.Models.Forum()
+            var forum = new Forum()
             {
                 Title = model.Title,
                 Description = model.Description,
@@ -142,6 +149,18 @@ namespace LandOfForums.Controllers
 
             await _forumService.Add(forum);
             return RedirectToAction("Index", "Forum");
+        }
+
+        public async Task<CloudBlockBlob> PostForumImage(IFormFile file)
+        {
+            var connectionString = _configuration["AzureStorageAccountConnectionString"];
+            var container = _uploadService.GetBlobContainer(connectionString);
+            var parsedContentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            var filename = Path.Combine(parsedContentDisposition.FileName.ToString().Trim('"'));
+            var blockBlob = container.GetBlockBlobReference(filename);
+            await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+
+            return blockBlob;
         }
 
         public PostListingModel GetLatestPost(int forumId)

@@ -60,7 +60,7 @@ namespace LandOfForums.Controllers
         public async Task<IActionResult> UploadProfileImage(IFormFile file)
         {
             var userId = _userManager.GetUserId(User);
-            var connectionString = _configuration.GetConnectionString("AzureStorageAccountConnectionString");
+            var connectionString = _configuration["AzureStorageAccountConnectionString"];
             var container = _uploadService.GetBlobContainer(connectionString);
 
             var parsedContentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);

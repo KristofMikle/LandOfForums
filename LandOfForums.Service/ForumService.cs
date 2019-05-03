@@ -52,11 +52,6 @@ namespace LandOfForums.Service
             return _postService.GetAllUsers(posts);
         }
 
-        public Task Create(Forum forum)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task Delete(int id)
         {
             var forum = GetById(id);
@@ -68,11 +63,6 @@ namespace LandOfForums.Service
         {
             return _context.Forums
                 .Include(forum => forum.Posts);
-        }
-
-        public IEnumerable<ApplicationUser> GetAllUsers()
-        {
-            throw new NotImplementedException();
         }
 
         public Forum GetById(int id)
@@ -97,7 +87,7 @@ namespace LandOfForums.Service
             throw new NotImplementedException();
         }
 
-        public async Task Add(Data.Models.Forum forum)
+        public async Task Add(Forum forum)
         {
             _context.Add(forum);
             await _context.SaveChangesAsync();
