@@ -1,10 +1,10 @@
 ﻿body {
     padding: 50px 0 20px 0;
     background-color: #EEE;
-    background-image: url("images/theme/bg-01.png");
+    background-image: none;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-position: center;
 }
 .btn-back{
@@ -40,6 +40,7 @@
     border-radius: 0px !important;
     float: right;
     margin-right: 30px;
+    margin-bottom: 14px;
 }
 .btn-newReply:hover {
     transition: ease-in 0.1s;
@@ -59,8 +60,8 @@
     padding: 8px 0px 24px 24px;
 }
 .postAuthorImage {
-    min-height: 80px;
-    min-width: 80px;
+    min-height: 40px;
+    min-width: 40px;
     float: left;
     margin-right: 5px;
     background-repeat: no-repeat;
@@ -104,13 +105,12 @@
 }
 
 .navLogo {
-    background-image: url("images/appLogo-s.png");
+    background-image: url("https://landofforums.blob.core.windows.net/images/logo.png");
     background-size: 100%;
     background-repeat: no-repeat;
-    padding-right: 16px;
-    width: 150px;
-    margin-right: 12px;
-    background-position: center;
+    height: 50px;
+    width:50px;
+    margin-right: 3px;
 }
 .navbar li{
     font-weight:bold;
