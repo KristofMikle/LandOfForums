@@ -1,3 +1,4 @@
+The Apllication is avaliable on Azure: https://landofforums.azurewebsites.net/
 # Land of Forums
 
 A forum app built with ASP.NET Core 2.0. Uses ASP.NET Core Identity for user membership and Razor pages to show the information from the database.
