@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandOfForums", "LandOfForums\LandOfForums.csproj", "{9E3304AE-DF01-4369-9C10-0A77A31FE61B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandOfForums.Data", "LandOfForums.Data\LandOfForums.Data.csproj", "{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandOfForums.Data", "LandOfForums.Data\LandOfForums.Data.csproj", "{D0EF6D42-BA58-4BD6-95CD-D8FDCEEBE957}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandOfForums.Service", "LandOfForums.Service\LandOfForums.Service.csproj", "{812C2251-86CD-42C2-9006-4B427BF5C393}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandOfForums.Service", "LandOfForums.Service\LandOfForums.Service.csproj", "{812C2251-86CD-42C2-9006-4B427BF5C393}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -51,7 +51,7 @@ namespace LandOfForums.Controllers
             return RedirectToAction("Results", new {searchQuery});
         }
 
-        private static ForumListingModel BuildForumListing(Data.Models.Forum forum)
+        private static ForumListingModel BuildForumListing(Forum forum)
         {
             return new ForumListingModel
             {

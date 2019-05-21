@@ -131,7 +131,7 @@ namespace LandOfForums.Controllers
 
             if (model.ImageUpload != null)
             {
-                var blockBlob = PostForumImage(model.ImageUpload);
+                var blockBlob = GetUploadedImage(model.ImageUpload);
                 imageUri = blockBlob.Result.Uri.AbsoluteUri;
             }
             else
@@ -151,7 +151,7 @@ namespace LandOfForums.Controllers
             return RedirectToAction("Index", "Forum");
         }
 
-        public async Task<CloudBlockBlob> PostForumImage(IFormFile file)
+        public async Task<CloudBlockBlob> GetUploadedImage(IFormFile file)
         {
             var connectionString = _configuration["AzureStorageAccountConnectionString"];
             var container = _uploadService.GetBlobContainer(connectionString);

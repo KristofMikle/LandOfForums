@@ -48,15 +48,6 @@ namespace LandOfForums.Controllers
             };
         }
 
-        private ForumListingModel GetForumForPost(Post post)
-        {
-            var forum = post.Forum;
-            return new ForumListingModel
-            {
-
-            };
-        }
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
