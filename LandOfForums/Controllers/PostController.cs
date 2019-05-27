@@ -43,8 +43,7 @@ namespace LandOfForums.Controllers
                 Content = post.Content,
                 Replies = replies,
                 ForumId = post.Forum.Id,
-                ForumName = post.Forum.Title,
-                IsAuthorAdmin= IsAuthorAdmin(post.User)
+                ForumName = post.Forum.Title
             };
             return View(model);
         }
@@ -104,9 +103,8 @@ namespace LandOfForums.Controllers
                 AuthorRating = reply.User.Rating,
                 ReplyContent = reply.Content,
                 Created = reply.Created,
-                PostId = reply.Id,
-                IsAuthorAdmin = IsAuthorAdmin(reply.User)
-            });
+                PostId = reply.Id
+            }).ToList<PostReplyModel>();
         }
     }
 }

@@ -10,7 +10,6 @@ using LandOfForums.Models.Post;
 using LandOfForums.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Net.Http.Headers;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -54,18 +53,18 @@ namespace LandOfForums.Controllers
             return View(model);
         }
 
-        public IActionResult Topic(int id, string searchquery)
+        public IActionResult Topic(int id, string searchQuery)
         {
             var forum = _forumService.GetById(id);
 
             var posts = new List<Post>();
-            if (!String.IsNullOrEmpty(searchquery))
+            if (String.IsNullOrEmpty(searchQuery))
             {
-                posts = _postService.GetFilteredPosts(id, searchquery).ToList();
+                posts = forum.Posts.ToList();
             }
             else
             {
-                posts = forum.Posts.ToList();
+                posts = _postService.GetFilteredPosts(id, searchQuery).ToList();
             }
 
             var postList = posts.Select(post => new PostListingModel
@@ -78,12 +77,13 @@ namespace LandOfForums.Controllers
                 DatePosted = post.Created.ToString(),
                 ReplyCount = post.Replies.Count(),
                 Forum = BuildForumListing(post)
-            });
+            }).ToList<PostListingModel>();
 
             var model = new ForumTopicModel
             {
                 Posts = postList,
-                Forum = BuildForumListing(forum)
+                Forum = BuildForumListing(forum),
+                SearchQuery = searchQuery
             };
             return View(model);
         }
@@ -177,7 +177,7 @@ namespace LandOfForums.Controllers
                 };
             }
 
-            return new PostListingModel();
+            return null;
         }
     }
 }
